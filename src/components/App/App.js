@@ -1,5 +1,3 @@
-
-
 import Header from '../Header';
 import Layout from '../Layout';
 import Footer from '../Footer';
@@ -170,12 +168,10 @@ const App = () => {
         </p>
 
       </Layout>
-      
-       <Layout 
+      <Layout 
         id="cards"
-        title="This is First Layout"
-        colorBg='#2dd42d'
-        
+        title="Cards"
+        colorBg='#2dd42d'  
       >
         <div className={s.flex}>
           {
@@ -196,7 +192,6 @@ const App = () => {
 
         </p>
       </Layout>
-      
       <Footer />
     </>
   );
