@@ -1,13 +1,28 @@
-import React from 'react';
+import React, { Children } from 'react';
 import l from './style.module.css';
 
 
-const Layout = ({title,descr,colorBg,urlBg}) => {
+const Layout = ({ id, title, colorBg, urlBg, children }) => {
     
-   const layoutstile = urlBg ? { background:`url(${urlBg})`} : { background:colorBg}
+    
+    const secStyle = {};
+
+    if (urlBg) {
+        secStyle.backgroundImage = `url(${urlBg})`;
+
+    }
+
+    if (colorBg) {
+        secStyle.backgroundColor = colorBg;
+    }
+
 
     return (
-        <section style= {layoutstile} className={l.root } >
+        <section 
+            style= {secStyle} 
+            className={l.root } 
+            id={id}
+        >
             <div className={l.wrapper}>
                 <article>
                     <div className={l.title}>
@@ -16,10 +31,8 @@ const Layout = ({title,descr,colorBg,urlBg}) => {
                         </h3>
                         <span className={l.separator}></span>
                     </div>
-                    <div className={l.descfull}>
-                        <p>
-                            {descr}
-                        </p>
+                    <div className={`${l.desc} ${l.full}`}>
+                        {children}
                     </div>
                 </article>
             </div>
