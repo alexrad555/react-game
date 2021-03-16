@@ -1,12 +1,9 @@
 import s from './style.module.css';
 import cn from 'classnames';
 
-
-
-const NavBar = ( {onClickNav,Active} ) => {
+const NavBar = ({ onClick, isActive }) => {
     const handleClick = () => {
-        onClickNav && onClickNav()
-
+        onClick && onClick()
     };
 
     return (
@@ -15,14 +12,12 @@ const NavBar = ( {onClickNav,Active} ) => {
                 <p className={s.brand}>
                   LOGO
                 </p>
-               
                 <a  
                     onClick={handleClick}
-                    className={cn(s.menuButton, {[s.active]: Active})}
+                    className={cn(s.menuButton, {[s.active]: isActive})}
                 >
-                <span  />
+                    <span  />
                 </a>
-                
             </div>
         </nav>
     )
