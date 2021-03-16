@@ -145,7 +145,7 @@ const POKEMONS = [
 
 const HomePage = ( { onChangePage } ) => {
     const handleClickButton = (page) => {
-        console.log('####:<HomePage />',);
+      
         onChangePage && onChangePage(page);
     }
 
@@ -186,8 +186,7 @@ const HomePage = ( { onChangePage } ) => {
               img={item.img}
               type={item.type}
               values={item.values}
-               /> )
-            
+            />)          
           }
 
         </div>
