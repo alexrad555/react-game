@@ -1,10 +1,14 @@
 import s from './style.module.css';
+import cn from 'classnames';
 
-const Menu = () => {
+
+
+const Menu = ({Active}) => {
+    
     return(
-        <div class="menuContainer active/deactive">
-            <div class={s.overlay} />
-            <div class={s.menuItems}>
+        <div className={cn(s.menuContainer, { [s.active]: Active}, {[s.deactive]: !Active })}>
+            <div className={s.overlay} />
+            <div className={s.menuItems}>
                 <ul>
                     <li>
                         <a href="#welcome">

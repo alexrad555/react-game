@@ -13,7 +13,7 @@ const GamePage = ( { onGoHomePage} ) => {
             <button 
                 onClick={onClick}
             >
-                HomePage
+                Home To Page
             </button>
         </div>
     );
