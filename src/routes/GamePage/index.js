@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import database from "../../service/firebase";
 
 import s from "./style.module.css";
 import PokemonCard from '../../components/PokemonCard';
@@ -145,7 +146,13 @@ const POKEMONS = [
   ];
 
 const GamePage = ( ) => {
-    const [pokemons, setPokemons] = useState(JSON.parse(JSON.stringify(POKEMONS)));
+    const [pokemons, setPokemons] = useState({});
+
+    useEffect(() => {
+      database.ref('pokemons').once('value', (snapshot) => {
+        setPokemons (snapshot.val());
+      });
+    }, []);
 
     const handleClick = (id) => {
       const newArray = pokemons.filter(item => {
@@ -165,16 +172,17 @@ const GamePage = ( ) => {
     return (
         <>
            <div className={s.flex}>			
-           {pokemons.map((item) => 
+           {
+              Object.entries(pokemons).map(([key, {name, img, id, type ,values, active}]) => 
 				      <PokemonCard   
-                isActive={item.active}
+                isActive={active}
                 onClick ={handleClick}               
-                id={item.id}
-                key={item.id}
-                name={item.name}
-                img={item.img}
-                type={item.type}
-                values={item.values}/>
+                id={id}
+                key={key}
+                name={name}
+                img={img}
+                type={type}
+                values={values}/>
             )}       				
             </div>
         </>
