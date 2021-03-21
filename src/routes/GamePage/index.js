@@ -149,32 +149,41 @@ const GamePage = ( ) => {
     const [pokemons, setPokemons] = useState({});
 
     useEffect(() => {
-      database.ref('pokemons').once('value', (snapshot) => {
-        setPokemons (snapshot.val());
+      database.ref('pokemons').on('value', (snapshot) => {
+        setPokemons(snapshot.val());
       });
     }, []);
 
-    const handleClick = (id) => {
-      const newArray = pokemons.filter(item => {
-        if (item.id === id) {
-            item.active = true;
-        }
-        return true;
-    })
+    const handleClick = (keyID) => {
+      const pokemon = pokemons[keyID]
+      
+      database.ref(`pokemons/${keyID}`).update({
+          "active": pokemon.active ? 'false' : 'true'
+      });
 
-    setPokemons(newArray)
+
 
     console.log(pokemons,'pokemons')
     console.log(POKEMONS,'POKEMONS')
        
     };
+
+    const handleAddPokemon = () => {
+      const newPokemon = Object.values(pokemons)[0]
+      const newKey = database.ref().child('pokemons').push().key;
+      database.ref('pokemons/' + newKey).set(newPokemon);
+    };
  
     return (
         <>
+          <button onClick={handleAddPokemon}>
+            Add pokemon
+          </button>
            <div className={s.flex}>			
            {
               Object.entries(pokemons).map(([key, {name, img, id, type ,values, active}]) => 
-				      <PokemonCard   
+				      <PokemonCard  
+                keyID={key}
                 isActive={active}
                 onClick ={handleClick}               
                 id={id}
