@@ -155,10 +155,9 @@ const GamePage = ( ) => {
     }, []);
 
     const handleClick = (keyID) => {
-      const pokemon = pokemons[keyID]
-      
+      const isActive = pokemons[keyID].active
       database.ref(`pokemons/${keyID}`).update({
-          "active": pokemon.active ? 'false' : 'true'
+          "active": !isActive
       });
 
 
