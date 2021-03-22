@@ -32,6 +32,7 @@ const PokemonCard = ({name, img, id, type, values, isActive, onClick, minimize, 
                 </div>
 
                 <div className={s.cardBack}>
+                    
                     <div className={cn(s.wrap, s.back)} />
                 </div>
 
