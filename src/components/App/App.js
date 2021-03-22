@@ -1,6 +1,7 @@
 import { useRouteMatch, Route, Switch, Redirect } from "react-router-dom";
 import cn from 'classnames';
 
+
 import HomePage from "../../routes/HomePage";
 import GamePage from "../../routes/GamePage";
 import AboutPage from "../../routes/AboutPage";
@@ -9,7 +10,16 @@ import NotFound from "../../routes/NotFound/";
 import MenuHeader from "../MenuHeader";
 import Footer from "../Footer"; 
 
+import database from "../../service/firebase";
+
 import s from './style.module.css';
+
+
+
+  database.ref('pokemons').once('value', (snapshot) => {
+	  console.log('####:snahot', snapshot.val());
+  });
+
 
 const App = () => {
 	const isRoot = useRouteMatch('/')

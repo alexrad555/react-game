@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import database from "../../service/firebase";
 
 import s from "./style.module.css";
 import PokemonCard from '../../components/PokemonCard';
@@ -145,36 +146,51 @@ const POKEMONS = [
   ];
 
 const GamePage = ( ) => {
-    const [pokemons, setPokemons] = useState(JSON.parse(JSON.stringify(POKEMONS)));
+    const [pokemons, setPokemons] = useState({});
 
-    const handleClick = (id) => {
-      const newArray = pokemons.filter(item => {
-        if (item.id === id) {
-            item.active = true;
-        }
-        return true;
-    })
+    useEffect(() => {
+      database.ref('pokemons').on('value', (snapshot) => {
+        setPokemons(snapshot.val());
+      });
+    }, []);
 
-    setPokemons(newArray)
+    const handleClick = (keyID) => {
+      const isActive = pokemons[keyID].active
+      database.ref(`pokemons/${keyID}`).update({
+          "active": !isActive
+      });
+
+
 
     console.log(pokemons,'pokemons')
     console.log(POKEMONS,'POKEMONS')
        
     };
+
+    const handleAddPokemon = () => {
+      const newPokemon = Object.values(pokemons)[0]
+      const newKey = database.ref().child('pokemons').push().key;
+      database.ref('pokemons/' + newKey).set(newPokemon);
+    };
  
     return (
         <>
+          <button onClick={handleAddPokemon}>
+            Add pokemon
+          </button>
            <div className={s.flex}>			
-           {pokemons.map((item) => 
-				      <PokemonCard   
-                isActive={item.active}
+           {
+              Object.entries(pokemons).map(([key, {name, img, id, type ,values, active}]) => 
+				      <PokemonCard  
+                keyID={key}
+                isActive={active}
                 onClick ={handleClick}               
-                id={item.id}
-                key={item.id}
-                name={item.name}
-                img={item.img}
-                type={item.type}
-                values={item.values}/>
+                id={id}
+                key={key}
+                name={name}
+                img={img}
+                type={type}
+                values={values}/>
             )}       				
             </div>
         </>
