@@ -4,7 +4,7 @@ import cardBackSide from './assets/card-back-side.jpg';
 
 const PokemonCard = ({name, keyID, img, id, type, values, isActive, onClick}) => {
     return (      
-        <div className={s.root} onClick={() => onClick(keyID)}>
+        <div onClick={() => onClick(keyID)}>
             <div className={cn(s.pokemonCard, {[s.active]: isActive})}>
                 <div className={s.cardFront}>
                     <div className={cn(s.wrap, s.front)}> 
