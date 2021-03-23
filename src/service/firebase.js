@@ -10,7 +10,7 @@ const firebaseConfig = {
 	messagingSenderId: "1619753954",
 	appId: "1:1619753954:web:eed104feaf158b94e1d7bb"
   };
-
+  firebase.initializeApp(firebaseConfig);
 class Firebase {
     constructor(){
         
@@ -19,7 +19,7 @@ class Firebase {
     }
 
     offPokemonSoket = () => {
-        this.database.ref('pokemons').on();
+        this.database.ref('pokemons').off();
     }
 
     getPokemonSoket = (cb) => {
@@ -42,6 +42,5 @@ class Firebase {
     }
 }
 
-  firebase.initializeApp(firebaseConfig);
  
   export default Firebase;
