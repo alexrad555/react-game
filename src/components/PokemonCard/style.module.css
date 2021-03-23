@@ -14,8 +14,8 @@
     --fighting: #E6E0D4;
     --normal:#F5F5F5;
 
-    width: 100px;
-    height: 100px;
+    width: 100p%;
+    height: 100%;
     position: relative;
     transform-style: preserve-3d;
     transition: .6s .1s;
@@ -36,7 +36,8 @@
 }
 
 .pokemonCard.selected {
-    margin-top: -40px;
+    margin-top: -20px;
+    margin-bottom: 20px;
 }
 
 .cardFront,
@@ -59,6 +60,12 @@
     transform: rotateY(0deg);
     z-index: 2;
 }
+
+.pokemonCard:active .wrap.front::after,
+.pokemonCard:focus .wrap.front::after {
+    border-color: var(--rock);
+}
+
 
 .wrap {
     position: absolute;

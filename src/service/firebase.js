@@ -18,6 +18,10 @@ class Firebase {
         this.database = this.fire.database();
     }
 
+    offPokemonSoket = () => {
+        this.database.ref('pokemons').on();
+    }
+
     getPokemonSoket = (cb) => {
         this.database.ref('pokemons').on('value', (snapshot) => {
             cb(snapshot.val());

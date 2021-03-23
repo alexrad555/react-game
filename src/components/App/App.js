@@ -1,4 +1,4 @@
-import { useRouteMatch, Route, Switch, Redirect } from "react-router-dom";
+import { useLocation ,useRouteMatch, Route, Switch, Redirect } from "react-router-dom";
 import cn from 'classnames';
 
 
@@ -22,7 +22,7 @@ import Firebase from "../../service/firebase";
 
 
 const App = () => {
-	const isRoot = useRouteMatch('/')
+	const isRoot = useLocation('/')
 	const isHome = useRouteMatch('/home');
 	const isHomePage = (!isRoot && !isHome) || (isRoot && isRoot.isExact) || (isHome && isHome.isExact);
 	
