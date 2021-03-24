@@ -25,6 +25,9 @@ const StartPage = ( ) => {
         return () => firebase.offPokemonSoket();
     }, []);
 
+   
+
+    
     const handleChangeSelected = (key) => {
         const pokemon = {...pokemons[key]};
         pokemonsContext.onSelectedPokemons(key, pokemon);
