@@ -1,3 +1,20 @@
+.flex {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 40px;
+
+}
+
+.buttonWrap {
+    text-align: center;
+    padding: 2rem;
+}
+
+.card {
+    width: 100%;
+    height: 380px;
+    cursor: pointer;
+}
 button,
 button:visited {
     width: 100%;
@@ -53,12 +70,7 @@ button:disabled:hover {
     color: #fafafa;
 }
 
-/* .flex {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-  } */
+
 button,
 button:visited {
     width: 100%;
