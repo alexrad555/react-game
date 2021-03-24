@@ -11,8 +11,8 @@
 }
 
 .card {
-    width: 100%;
-    height: 380px;
+    width: 100% !important;
+    height: 380px !important;
     cursor: pointer;
 }
 button,
