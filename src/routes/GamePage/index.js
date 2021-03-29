@@ -13,8 +13,30 @@ import {PokemonContext} from "../../context/pokemonContext";
 
 const GamePage = () => {
     const [selectedPokemons, setSelectedPokemons] = useState({});
-    console.log(selectedPokemons,"setSelectedPokemons");
+    const [player2Pokemons, setPlayer2Pokemons] = useState([]);
+    // const [dataPlayer2,setDataPlayer2] = useState({});
+  
     const match = useRouteMatch();
+
+    console.log(player2Pokemons, 'player2Pokemons in game page')
+
+    const handleResetContext = () => {
+        setSelectedPokemons({})
+    }
+
+    // const fetchPlayer2Pokemons = async () => {
+    //     const player2Response = await fetch('https://reactmarathon-api.netlify.app/api/create-player');
+    //     const player2Request = await player2Response.json();
+
+    //     return player2Request.data.map(item => ({
+    //         ...item,
+    //         possession:'red',
+    //     }))
+    // }
+
+    const handleAddPlayer2Pokemons = (pokemons) => {
+        setPlayer2Pokemons(pokemons)
+    }
 
     const handleSelectedPokemons = (key, pokemon) => {
         setSelectedPokemons(prevState => {
@@ -30,10 +52,19 @@ const GamePage = () => {
             }
         })
     }
+
+    // console.log(fetchPlayer2Pokemons(), 'fetchPlayer2Pokemons()')
     return (
         <PokemonContext.Provider value={{
             pokemons: selectedPokemons,
-            onSelectedPokemons: handleSelectedPokemons
+            player2Pokemons: player2Pokemons,
+            onResetContext: handleResetContext,
+            onSelectedPokemons: handleSelectedPokemons,
+            onAddPlayer2Pokemons: handleAddPlayer2Pokemons
+            // player2Pokemons: fetchPlayer2Pokemons()
+            
+            // dataPlayer2Pokemons: dataPlayer2,
+            // pokemonsPlayer2: changeDataPlayer2
 
         }}>
             <Switch>

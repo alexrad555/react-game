@@ -22,7 +22,7 @@ import Firebase from "../../service/firebase";
 
 
 const App = () => {
-	const isRoot = useLocation('/')
+	const isRoot = useRouteMatch('/')
 	const isHome = useRouteMatch('/home');
 	const isHomePage = (!isRoot && !isHome) || (isRoot && isRoot.isExact) || (isHome && isHome.isExact);
 	
